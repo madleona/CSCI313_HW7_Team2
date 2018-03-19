@@ -100,4 +100,19 @@ export default class Game extends Phaser.State {
         this.scoreField.setValue(this.score);
     }
 
+    obtainPowerup(playerRef)
+    {
+        this.player.powerup(/*powerup here or something*/)
+        //determine the type of powerup here or in the powerup class??
+
+        //if more health
+            //health++
+
+        //if more speed
+            //speed++
+
+        //if more bullets
+            //bullets++ or decrease time inbetween shots
+    }
+
 }

@@ -87,4 +87,10 @@ export default class Player extends Phaser.Sprite {
     playFly() {
         this.animations.play("fly", 14, true);
     }
+
+    powerup(power)
+    {
+        //determine type of powerup here???
+
+    }
 }
