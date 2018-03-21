@@ -120,8 +120,9 @@ export default class Game extends Phaser.State {
             this.healthBar.setValue(this.player.playerModel.health / this.player.playerModel.max_health);
             console.log('healthbox');
         }
-        else {
-            console.log("not healh box")
+        else if (powerup.type === 'somethingelse') {
+            console.log('somethingelse');
+            //whatever code is associated with this other powerup thingy
         }
 
         powerup.kill();
