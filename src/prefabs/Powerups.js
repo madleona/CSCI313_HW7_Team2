@@ -5,7 +5,7 @@ export default class Powerups extends Phaser.Sprite {
             super(game, x, y, 'healthbox', frame);
         else 
             super(game, x, y, 'player', frame);
-
+        this.type = type;
         // initialize your prefab here
         this.game.physics.enable(this, Phaser.Physics.ARCADE);
 
