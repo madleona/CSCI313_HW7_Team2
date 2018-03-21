@@ -3,6 +3,8 @@ import Player from "../prefabs/Player.js";
 import Enemy from "../prefabs/Enemy.js";
 import NumberBox from "../prefabs/NumberBox.js";
 import HealthBar from "../prefabs/HealthBar.js";
+import Powerups from "../prefabs/Powerups.js"; 
+
 
 export default class Game extends Phaser.State {
 
@@ -34,6 +36,13 @@ export default class Game extends Phaser.State {
             let enemy = new Enemy(this.game, this.game.width + 100 + (Math.random() * 400), Math.random() * this.game.height, this.enemyBullets);
             this.enemies.add(enemy);
         }
+
+        //code for adding the powerups
+        this.powerups = this.add.group();
+
+            //just display one rightaway
+        let powerup = new Powerups(this.game, 100, 100)
+        this.powerups.add(powerup);
 
         //add the explosions
         this.explosions = this.game.add.emitter(0, 0, 200);
@@ -70,6 +79,7 @@ export default class Game extends Phaser.State {
         this.physics.arcade.overlap(this.enemies, this.bullets, this.damageEnemy, null, this);
         this.physics.arcade.overlap(this.player, this.enemies, this.damagePlayer, null, this);
         this.physics.arcade.overlap(this.player, this.enemyBullets, this.damagePlayer, null, this);
+        //this.physics.arcade.overlap(this.player, this.)
     }
 
     incrementWave() {

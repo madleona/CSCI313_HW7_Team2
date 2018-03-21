@@ -2,10 +2,16 @@ export default class Powerups extends Phaser.Group {
 
     constructor(game, xpos, ypos)
     {
-        super(game);
+        super(game, xpos, ypos, 'enemy', 0);
 
         this.x = xpos;
         this.y = ypos;
+
+        game.physics.enable(this, Phaser.Physics.ARCADE);
+        this.bounceTick = Math.random() * 2;
+
+
+        console.log("powerup");
     }
 
     update()
