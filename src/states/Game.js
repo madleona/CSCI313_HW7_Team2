@@ -15,7 +15,7 @@ export default class Game extends Phaser.State {
     }
 
     create() {
-
+        this.spawnChancePowerup = .2;
         this.spawnChance = .02;
         this.score = 0;
 
@@ -37,12 +37,8 @@ export default class Game extends Phaser.State {
             this.enemies.add(enemy);
         }
 
-        //code for adding the powerups
+        //add the group for the powerups
         this.powerups = this.add.group();
-
-            //just display one rightaway
-        let powerup = new Powerups(this.game, 100, 100)
-        this.powerups.add(powerup);
 
         //add the explosions
         this.explosions = this.game.add.emitter(0, 0, 200);
@@ -76,10 +72,15 @@ export default class Game extends Phaser.State {
             this.enemies.add(enemy);
         }
 
+        if (Math.random() < this.spawnChancePowerup) {
+            let powerup = new Powerups(this.game, this.game.width + 100 + (Math.random() * 400), Math.random() * this.game.height, 0, 'healthbox')
+            this.powerups.add(powerup);
+        }
+
         this.physics.arcade.overlap(this.enemies, this.bullets, this.damageEnemy, null, this);
         this.physics.arcade.overlap(this.player, this.enemies, this.damagePlayer, null, this);
         this.physics.arcade.overlap(this.player, this.enemyBullets, this.damagePlayer, null, this);
-        //this.physics.arcade.overlap(this.player, this.)
+        this.physics.arcade.overlap(this.player, this.powerups, this.obtainPowerup, null, this)
     }
 
     incrementWave() {
@@ -110,19 +111,20 @@ export default class Game extends Phaser.State {
         this.scoreField.setValue(this.score);
     }
 
-    obtainPowerup(playerRef)
+    obtainPowerup(playerRef, powerup)
     {
-        this.player.powerup(/*powerup here or something*/)
-        //determine the type of powerup here or in the powerup class??
+        console.log(powerup);
+        if (powerup.type === 'healthbox') {
+            console.log('heal');
+            this.player.heal(100);
+            this.healthBar.setValue(this.player.playerModel.health / this.player.playerModel.max_health);
+            console.log('healthbox');
+        }
+        else {
+            console.log("not healh box")
+        }
 
-        //if more health
-            //health++
-
-        //if more speed
-            //speed++
-
-        //if more bullets
-            //bullets++ or decrease time inbetween shots
+        powerup.kill();
     }
 
 }

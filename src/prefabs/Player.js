@@ -84,6 +84,10 @@ export default class Player extends Phaser.Sprite {
         this.playerModel.damage(amt);
     }
 
+    heal(amt) {
+        this.playerModel.heal(amt);
+    }
+
     playFly() {
         this.animations.play("fly", 14, true);
     }
@@ -91,6 +95,6 @@ export default class Player extends Phaser.Sprite {
     powerup(power)
     {
         //determine type of powerup here???
-
+        
     }
 }
