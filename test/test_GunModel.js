@@ -14,16 +14,46 @@ describe("Gun Model", function () {
         assert.equal(model.max_bullets, 10);
     });
 
-    it('can be created with a specified number of bullets and maximum capacity', function () {
-        let model = new GunModel(12, 25);
-        assert.equal(model.bullets, 12);
-        assert.equal(model.max_bullets, 25);
+    it('initially has 5 bullets2 with maximum capacity of 5', function () {
+        let model = new GunModel();
+        assert.equal(model.bullets2, 5);
+        assert.equal(model.max_bullets2, 5);
+    });
+
+    it('initially has 2 bullets3 with maximum capacity of 2', function () {
+        let model = new GunModel();
+        assert.equal(model.bullets3, 2);
+        assert.equal(model.max_bullets3, 2);
+    });
+
+    it('initially has 1 bullets4 with maximum capacity of 1', function () {
+        let model = new GunModel();
+        assert.equal(model.bullets4, 1);
+        assert.equal(model.max_bullets4, 1);
     });
 
     it('removes one bullet when fired', function () {
         let model = new GunModel();
         model.fire();
         assert.equal(model.bullets, 9);
+    });
+
+    it('removes one bullet2 when fired', function () {
+        let model = new GunModel();
+        model.fire2();
+        assert.equal(model.bullets2, 4);
+    });
+
+    it('removes one bullet3 when fired', function () {
+        let model = new GunModel();
+        model.fire3();
+        assert.equal(model.bullets3, 1);
+    });
+
+    it('removes one bullet4 when fired', function () {
+        let model = new GunModel();
+        model.fire4();
+        assert.equal(model.bullets4, 0);
     });
 
     it('has a method to check to see if it can be fired', function () {
@@ -37,7 +67,7 @@ describe("Gun Model", function () {
         assert.equal(model.canBeFired(), false);
     });
 
-    it('can be fired 500 milliseconds after the last firing', function () {
+    it('fire can be fired 500 milliseconds after the last firing', function () {
         let clock = sinon.useFakeTimers();
         let model = new GunModel();
         model.fire();
@@ -48,4 +78,25 @@ describe("Gun Model", function () {
         clock.restore()
     });
 
+    it('fire2 can be fired 500 milliseconds after the last firing', function () {
+        let clock = sinon.useFakeTimers();
+        let model = new GunModel();
+        model.fire2();
+        //Stub the clock ahead by 500 milliseconds
+        clock.tick(500);
+
+        assert.equal(model.canBeFired(), true);
+        clock.restore()
+    });
+
+    it('fire3 can be fired 500 milliseconds after the last firing', function () {
+        let clock = sinon.useFakeTimers();
+        let model = new GunModel();
+        model.fire3();
+        //Stub the clock ahead by 500 milliseconds
+        clock.tick(500);
+
+        assert.equal(model.canBeFired(), true);
+        clock.restore()
+    });
 });

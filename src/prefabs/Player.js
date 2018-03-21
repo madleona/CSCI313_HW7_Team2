@@ -101,13 +101,13 @@ export default class Player extends Phaser.Sprite {
             this.playerModel.gun.fire2();
 
             //This is all related to the view of the bullet, not the model (except the hardcoded velocity below)
-            let bullet = this.bullet2Spites.getFirstDead();
+            let bullet = this.bullet2Sprites.getFirstDead();
             if (bullet) {
                 bullet.x = this.x + this.fireposition.x;
                 bullet.y = this.y + this.fireposition.y;
                 bullet.revive();
             } else {
-                bullet = this.bullet2Spites.create(this.x + this.fireposition.x, this.y + this.fireposition.y, "bullet2");
+                bullet = this.bullet2Sprites.create(this.x + this.fireposition.x, this.y + this.fireposition.y, "bullet2");
                 this.game.physics.enable(bullet, Phaser.Physics.ARCADE);
                 bullet.outOfBoundsKill = true;
                 bullet.checkWorldBounds = true;
@@ -125,13 +125,13 @@ export default class Player extends Phaser.Sprite {
             this.playerModel.gun.fire3();
 
             //This is all related to the view of the bullet, not the model (except the hardcoded velocity below)
-            let bullet = this.bullet3Spites.getFirstDead();
+            let bullet = this.bullet3Sprites.getFirstDead();
             if (bullet) {
                 bullet.x = this.x + this.fireposition.x;
                 bullet.y = this.y + this.fireposition.y;
                 bullet.revive();
             } else {
-                bullet = this.bullet3Spites.create(this.x + this.fireposition.x, this.y + this.fireposition.y, "bullet3");
+                bullet = this.bullet3Sprites.create(this.x + this.fireposition.x, this.y + this.fireposition.y, "bullet3");
                 this.game.physics.enable(bullet, Phaser.Physics.ARCADE);
                 bullet.outOfBoundsKill = true;
                 bullet.checkWorldBounds = true;
@@ -149,13 +149,13 @@ export default class Player extends Phaser.Sprite {
             this.playerModel.gun.fire4();
 
             //This is all related to the view of the bullet, not the model (except the hardcoded velocity below)
-            let bullet = this.bullet4Spites.getFirstDead();
+            let bullet = this.bullet4Sprites.getFirstDead();
             if (bullet) {
                 bullet.x = this.x + this.fireposition.x;
                 bullet.y = this.y + this.fireposition.y;
                 bullet.revive();
             } else {
-                bullet = this.bullet4Spites.create(this.x + this.fireposition.x, this.y + this.fireposition.y, "bullet4");
+                bullet = this.bullet4Sprites.create(this.x + this.fireposition.x, this.y + this.fireposition.y, "bullet4");
                 this.game.physics.enable(bullet, Phaser.Physics.ARCADE);
                 bullet.outOfBoundsKill = true;
                 bullet.checkWorldBounds = true;
