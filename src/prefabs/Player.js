@@ -4,7 +4,7 @@ export default class Player extends Phaser.Sprite {
 
     constructor(game, x, y, bullets) {
         super(game, x, y, 'player', 0);
-
+        //test
         this.playerModel = new PlayerModel(10, 10);
 
         //This code is specifically related to how the player model is "viewed"

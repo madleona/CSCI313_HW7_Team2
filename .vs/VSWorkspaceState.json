@@ -2,10 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\assets",
+    "\\assets\\images",
     "\\src",
     "\\src\\prefabs",
     "\\src\\states"
   ],
-  "SelectedNode": "\\assets\\images",
+  "SelectedNode": "\\src\\prefabs\\Player.js",
   "PreviewInSolutionExplorer": false
 }
