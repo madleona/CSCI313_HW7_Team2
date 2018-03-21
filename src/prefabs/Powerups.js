@@ -1,24 +1,22 @@
-export default class Powerups extends Phaser.Group {
+export default class Powerups extends Phaser.Sprite {
 
-    constructor(game, xpos, ypos)
-    {
-        super(game, xpos, ypos, 'enemy', 0);
+    constructor(game, x, y, frame, type) {
+        if (type === 'healthbox')
+            super(game, x, y, 'healthbox', frame);
+        else 
+            super(game, x, y, 'player', frame);
 
-        this.x = xpos;
-        this.y = ypos;
+        // initialize your prefab here
+        this.game.physics.enable(this, Phaser.Physics.ARCADE);
 
-        game.physics.enable(this, Phaser.Physics.ARCADE);
+        this.body.velocity.x = -200;
         this.bounceTick = Math.random() * 2;
 
-
-        console.log("powerup");
+        this.outOfBoundsKill = true;
     }
 
-    update()
-    {
-        //just sit there and move a little bit so it looks better
-        //just bounce around or something
+    update() {
+        this.bounceTick += .02;
+        this.y += Math.sin(this.bounceTick) * 1;
     }
-
-
 }

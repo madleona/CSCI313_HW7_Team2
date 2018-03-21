@@ -3,7 +3,7 @@ import GunModel from "./GunModel.js";
 export default class PlayerModel {
 
     constructor(health = 100, max_health = 100) {
-        this.max_speed = 100;
+        this.max_speed = 200;
         this.health = health;
         this.max_health = max_health;
         this.gun = new GunModel();
