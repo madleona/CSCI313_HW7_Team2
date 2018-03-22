@@ -99,4 +99,15 @@ describe("Gun Model", function () {
         assert.equal(model.canBeFired(), true);
         clock.restore()
     });
+
+    it('fire4 can be fired 500 milliseconds after the last firing', function () {
+        let clock = sinon.useFakeTimers();
+        let model = new GunModel();
+        model.fire4();
+        //Stub the clock ahead by 500 milliseconds
+        clock.tick(500);
+
+        assert.equal(model.canBeFired(), true);
+        clock.restore()
+    });
 });
