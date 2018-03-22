@@ -14,6 +14,8 @@ export default class Game extends Phaser.State {
 
     }
 
+    
+
     create() {
         this.spawnChancePowerup = .2;
         this.spawnChance = .02;
@@ -72,8 +74,19 @@ export default class Game extends Phaser.State {
             this.enemies.add(enemy);
         }
 
-        if (Math.random() < this.spawnChancePowerup) {
-            let powerup = new Powerups(this.game, this.game.width + 100 + (Math.random() * 400), Math.random() * this.game.height, 0, 'healthbox')
+        if (Math.random() < 0 /*this.spawnChancePowerup*/) {
+            let powerupstring = '';
+            let poweruptype = this.getRandomInt(0,2);
+
+            switch (poweruptype) {
+                case 0: powerupstring = 'healthbox'; break;
+
+                case 1: powerupstring = 'speed'; break;
+ 
+                case 2: powerupstring = 'bullets'; break;
+            }
+
+            let powerup = new Powerups(this.game, this.game.width + 100 + (Math.random() * 400), Math.random() * this.game.height, 0, powerupstring)
             this.powerups.add(powerup);
         }
 
@@ -113,19 +126,25 @@ export default class Game extends Phaser.State {
 
     obtainPowerup(playerRef, powerup)
     {
-        console.log(powerup);
         if (powerup.type === 'healthbox') {
-            console.log('heal');
             this.player.heal(100);
             this.healthBar.setValue(this.player.playerModel.health / this.player.playerModel.max_health);
-            console.log('healthbox');
         }
-        else if (powerup.type === 'somethingelse') {
-            console.log('somethingelse');
-            //whatever code is associated with this other powerup thingy
+        else if (powerup.type === 'speed') {
+            this.player.playerModel.max_speed += 100;
+        }
+        else if (powerup.type === 'bullets') {
+            this.player.playerModel.gun.addBullets(10);
+        }
+        else {
+
         }
 
         powerup.kill();
     }
 
+    
+    getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 }

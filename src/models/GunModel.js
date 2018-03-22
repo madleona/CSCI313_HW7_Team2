@@ -12,8 +12,15 @@ export default class GunModel {
         this.bullets -= 1;
     }
 
+    addBullets(moreBullets) {
+        this.bullets += moreBullets;
+
+        if (this.bullets > this.max_bullets)
+            this.bullets = this.max_bullets;
+    }
+
     canBeFired() {
-        if (Date.now() - this.lastFire >= 500) {
+        if (Date.now() - this.lastFire >= 500 && this.bullets > 0) {
             return true;
         } else {
             return false;
