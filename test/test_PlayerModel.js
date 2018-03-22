@@ -15,9 +15,9 @@ describe("Player Model", function () {
         assert.equal(model.max_health, 200);
     });
 
-    it("Starts out with a max speed of 100", function () {
+    it("Starts out with a max speed of 200", function () {
         let model = new PlayerModel();
-        assert.equal(model.max_speed, 100);
+        assert.equal(model.max_speed, 200);
     });
 
     it('can change max speed', function () {
