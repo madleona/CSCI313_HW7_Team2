@@ -33,15 +33,53 @@ export default class GunModel {
         this.bullets4 -= 1;
     }
 
-    addBullets(moreBullets) {
-        this.bullets += moreBullets;
+    addBullets() {
+        this.bullets += 5;
+        this.bullets2 += 3;
+        this.bullets3 += 2;
+        this.bullets4 += 1;
 
         if (this.bullets > this.max_bullets)
             this.bullets = this.max_bullets;
+
+        if (this.bullets2 > this.max_bullets2)
+            this.bullets2 = this.max_bullets2;
+
+        if (this.bullets3 > this.max_bullets3)
+            this.bullets3 = this.max_bullets3;
+
+        if (this.bullets4 > this.max_bullets4)
+            this.bullets4 = this.max_bullets4;
     }
+
+
 
     canBeFired() {
         if (Date.now() - this.lastFire >= 500 && this.bullets > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    canBeFired2() {
+        if (Date.now() - this.lastFire >= 500 && this.bullets2 > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    canBeFired3() {
+        if (Date.now() - this.lastFire >= 500 && this.bullets3 > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    canBeFired4() {
+        if (Date.now() - this.lastFire >= 500 && this.bullets4 > 0) {
             return true;
         } else {
             return false;

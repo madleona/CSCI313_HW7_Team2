@@ -11,13 +11,10 @@ export default class Game extends Phaser.State {
     constructor() {
         //object level properties
         super();
-
     }
 
-    
-
     create() {
-        this.spawnChancePowerup = .2;
+        this.spawnChancePowerup = .005;
         this.spawnChance = .02;
         this.score = 0;
 
@@ -77,9 +74,9 @@ export default class Game extends Phaser.State {
             this.enemies.add(enemy);
         }
 
-        if (Math.random() < 0 /*this.spawnChancePowerup*/) {
+        if (Math.random() < this.spawnChancePowerup) {
             let powerupstring = '';
-            let poweruptype = this.getRandomInt(0,2);
+            let poweruptype = this.getRandomInt(0,3);
 
             switch (poweruptype) {
                 case 0: powerupstring = 'healthbox'; break;
@@ -87,20 +84,26 @@ export default class Game extends Phaser.State {
                 case 1: powerupstring = 'speed'; break;
  
                 case 2: powerupstring = 'bullets'; break;
+
+                default: powerupstring = 'bullets'; //we want this to be the most common upgrade
             }
 
             let powerup = new Powerups(this.game, this.game.width + 100 + (Math.random() * 400), Math.random() * this.game.height, 0, powerupstring)
             this.powerups.add(powerup);
         }
 
+        
+
         this.physics.arcade.overlap(this.enemies, this.bullets, this.damageEnemy, null, this);
-        this.physics.arcade.overlap(this.enemies, this.bullets2, this.damageEnemy, null, this);
-        this.physics.arcade.overlap(this.enemies, this.bullets3, this.damageEnemy, null, this);
-        this.physics.arcade.overlap(this.enemies, this.bullets4, this.damageEnemy, null, this);
+        this.physics.arcade.overlap(this.enemies, this.bullets2, this.damageEnemy2, null, this);
+        this.physics.arcade.overlap(this.enemies, this.bullets3, this.damageEnemy3, null, this);
+        this.physics.arcade.overlap(this.enemies, this.bullets4, this.damageEnemy4, null, this);
         this.physics.arcade.overlap(this.player, this.enemies, this.damagePlayer, null, this);
         this.physics.arcade.overlap(this.player, this.enemyBullets, this.damagePlayer, null, this);
         this.physics.arcade.overlap(this.player, this.powerups, this.obtainPowerup, null, this)
     }
+
+    
 
     incrementWave() {
         this.spawnChance *= 1.2;
@@ -117,6 +120,8 @@ export default class Game extends Phaser.State {
     }
 
     damageEnemy(enemy, bullet) {
+        console.log("damage enemy");
+        console.log("bullet: " + bullet);
 
         this.explosions.x = enemy.x;
         this.explosions.y = enemy.y;
@@ -130,6 +135,54 @@ export default class Game extends Phaser.State {
         this.scoreField.setValue(this.score);
     }
 
+    damageEnemy2(enemy, bullet) {
+        console.log("damage enemy");
+        console.log("bullet: " + bullet);
+
+        this.explosions.x = enemy.x;
+        this.explosions.y = enemy.y;
+
+        this.explosions.explode(2000, 4);
+
+        enemy.kill();
+        bullet.kill();
+
+        this.score += 2;
+        this.scoreField.setValue(this.score);
+    }
+
+    damageEnemy3(enemy, bullet) {
+        console.log("damage enemy");
+        console.log("bullet: " + bullet);
+
+        this.explosions.x = enemy.x;
+        this.explosions.y = enemy.y;
+
+        this.explosions.explode(2000, 4);
+
+        enemy.kill();
+        bullet.kill();
+
+        this.score += 3;
+        this.scoreField.setValue(this.score);
+    }
+
+    damageEnemy4(enemy, bullet) {
+        console.log("damage enemy");
+        console.log("bullet: " + bullet);
+
+        this.explosions.x = enemy.x;
+        this.explosions.y = enemy.y;
+
+        this.explosions.explode(2000, 4);
+
+        enemy.kill();
+        bullet.kill();
+
+        this.score += 5;
+        this.scoreField.setValue(this.score);
+    }
+
     obtainPowerup(playerRef, powerup)
     {
         if (powerup.type === 'healthbox') {
@@ -140,7 +193,8 @@ export default class Game extends Phaser.State {
             this.player.playerModel.max_speed += 100;
         }
         else if (powerup.type === 'bullets') {
-            this.player.playerModel.gun.addBullets(10);
+            this.player.playerModel.gun.addBullets();
+            this.player.dispalyNumBullets();
         }
         else {
 

@@ -1,11 +1,21 @@
 import PlayerModel from "../models/PlayerModel.js";
 
 export default class Player extends Phaser.Sprite {
+    
 
     constructor(game, x, y, bullets, bullets2, bullets3, bullets4) {
         super(game, x, y, 'player', 0);
-        //test
+
+        
+        
         this.playerModel = new PlayerModel(10, 10);
+
+        var style = { font: "25px Comic Sans MS", fill: "#FFFFFF" };
+        var text = "Bullets1: " + this.playerModel.gun.bullets +
+            "\nBullets2: " + this.playerModel.gun.bullets2 +
+            "\nBullets3: " + this.playerModel.gun.bullets3 +
+            "\nBullets4: " + this.playerModel.gun.bullets4
+        this.display_Text = this.game.add.text(400, 25, text, style);
 
         //This code is specifically related to how the player model is "viewed"
         game.physics.enable(this, Phaser.Physics.ARCADE);
@@ -92,12 +102,15 @@ export default class Player extends Phaser.Sprite {
 
             this.animations.play("fire");
 
+            this.dispalyNumBullets();
+
         }
+
     }
 
     fire2() {
 
-        if (this.playerModel.gun.canBeFired()) {
+        if (this.playerModel.gun.canBeFired2()) {
             this.playerModel.gun.fire2();
 
             //This is all related to the view of the bullet, not the model (except the hardcoded velocity below)
@@ -115,13 +128,14 @@ export default class Player extends Phaser.Sprite {
             }
 
             this.animations.play("fire");
+            this.dispalyNumBullets();
 
         }
     }
 
     fire3() {
 
-        if (this.playerModel.gun.canBeFired()) {
+        if (this.playerModel.gun.canBeFired3()) {
             this.playerModel.gun.fire3();
 
             //This is all related to the view of the bullet, not the model (except the hardcoded velocity below)
@@ -139,13 +153,14 @@ export default class Player extends Phaser.Sprite {
             }
 
             this.animations.play("fire");
+            this.dispalyNumBullets();
 
         }
     }
 
     fire4() {
 
-        if (this.playerModel.gun.canBeFired()) {
+        if (this.playerModel.gun.canBeFired4()) {
             this.playerModel.gun.fire4();
 
             //This is all related to the view of the bullet, not the model (except the hardcoded velocity below)
@@ -163,8 +178,16 @@ export default class Player extends Phaser.Sprite {
             }
 
             this.animations.play("fire");
-
+            this.dispalyNumBullets();
         }
+    }
+
+    dispalyNumBullets() {
+        
+        this.display_Text.setText("Bullets1: " + this.playerModel.gun.bullets +
+            "\nBullets2: " + this.playerModel.gun.bullets2 +
+            "\nBullets3: " + this.playerModel.gun.bullets3 +
+            "\nBullets4: " + this.playerModel.gun.bullets4);
     }
 
     damage(amt) {
@@ -177,11 +200,5 @@ export default class Player extends Phaser.Sprite {
 
     playFly() {
         this.animations.play("fly", 14, true);
-    }
-
-    powerup(power)
-    {
-        //determine type of powerup here???
-        
     }
 }
