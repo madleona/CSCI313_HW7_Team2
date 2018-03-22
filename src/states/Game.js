@@ -3,6 +3,8 @@ import Player from "../prefabs/Player.js";
 import Enemy from "../prefabs/Enemy.js";
 import NumberBox from "../prefabs/NumberBox.js";
 import HealthBar from "../prefabs/HealthBar.js";
+import Powerups from "../prefabs/Powerups.js"; 
+
 
 export default class Game extends Phaser.State {
 
@@ -12,8 +14,10 @@ export default class Game extends Phaser.State {
 
     }
 
-    create() {
+    
 
+    create() {
+        this.spawnChancePowerup = .2;
         this.spawnChance = .02;
         this.score = 0;
 
@@ -37,6 +41,9 @@ export default class Game extends Phaser.State {
             let enemy = new Enemy(this.game, this.game.width + 100 + (Math.random() * 400), Math.random() * this.game.height, this.enemyBullets);
             this.enemies.add(enemy);
         }
+
+        //add the group for the powerups
+        this.powerups = this.add.group();
 
         //add the explosions
         this.explosions = this.game.add.emitter(0, 0, 200);
@@ -70,12 +77,29 @@ export default class Game extends Phaser.State {
             this.enemies.add(enemy);
         }
 
+        if (Math.random() < 0 /*this.spawnChancePowerup*/) {
+            let powerupstring = '';
+            let poweruptype = this.getRandomInt(0,2);
+
+            switch (poweruptype) {
+                case 0: powerupstring = 'healthbox'; break;
+
+                case 1: powerupstring = 'speed'; break;
+ 
+                case 2: powerupstring = 'bullets'; break;
+            }
+
+            let powerup = new Powerups(this.game, this.game.width + 100 + (Math.random() * 400), Math.random() * this.game.height, 0, powerupstring)
+            this.powerups.add(powerup);
+        }
+
         this.physics.arcade.overlap(this.enemies, this.bullets, this.damageEnemy, null, this);
         this.physics.arcade.overlap(this.enemies, this.bullets2, this.damageEnemy, null, this);
         this.physics.arcade.overlap(this.enemies, this.bullets3, this.damageEnemy, null, this);
         this.physics.arcade.overlap(this.enemies, this.bullets4, this.damageEnemy, null, this);
         this.physics.arcade.overlap(this.player, this.enemies, this.damagePlayer, null, this);
         this.physics.arcade.overlap(this.player, this.enemyBullets, this.damagePlayer, null, this);
+        this.physics.arcade.overlap(this.player, this.powerups, this.obtainPowerup, null, this)
     }
 
     incrementWave() {
@@ -106,4 +130,27 @@ export default class Game extends Phaser.State {
         this.scoreField.setValue(this.score);
     }
 
+    obtainPowerup(playerRef, powerup)
+    {
+        if (powerup.type === 'healthbox') {
+            this.player.heal(100);
+            this.healthBar.setValue(this.player.playerModel.health / this.player.playerModel.max_health);
+        }
+        else if (powerup.type === 'speed') {
+            this.player.playerModel.max_speed += 100;
+        }
+        else if (powerup.type === 'bullets') {
+            this.player.playerModel.gun.addBullets(10);
+        }
+        else {
+
+        }
+
+        powerup.kill();
+    }
+
+    
+    getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 }

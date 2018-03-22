@@ -36,6 +36,7 @@ export default class Preload {
 
         this.load.image('health_bar', 'assets/images/health_bar.png');
         this.load.image('health_holder', 'assets/images/health_holder.png');
+        this.load.image('healthbox', 'assets/images/healthbox.png');
         this.load.image('circle', 'assets/images/circle.png');
 
         //staaaart load

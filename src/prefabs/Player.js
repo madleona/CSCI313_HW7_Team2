@@ -4,7 +4,7 @@ export default class Player extends Phaser.Sprite {
 
     constructor(game, x, y, bullets, bullets2, bullets3, bullets4) {
         super(game, x, y, 'player', 0);
-
+        //test
         this.playerModel = new PlayerModel(10, 10);
 
         //This code is specifically related to how the player model is "viewed"
@@ -171,7 +171,17 @@ export default class Player extends Phaser.Sprite {
         this.playerModel.damage(amt);
     }
 
+    heal(amt) {
+        this.playerModel.heal(amt);
+    }
+
     playFly() {
         this.animations.play("fly", 14, true);
+    }
+
+    powerup(power)
+    {
+        //determine type of powerup here???
+        
     }
 }

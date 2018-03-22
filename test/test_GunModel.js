@@ -134,4 +134,6 @@ describe("Gun Model", function () {
         model.bullets = 0;
         assert.equal(model.canBeFired(), false);
     });
+
+
 });

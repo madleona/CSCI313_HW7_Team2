@@ -15,7 +15,7 @@ export default class Enemy extends Phaser.Sprite {
 
         this.willFire = Phaser.Utils.chanceRoll(50);
 
-        console.log(this.willFire);
+        //console.log(this.willFire);
 
         if (this.willFire) {
             this.fireTimer = this.game.time.create(false);
