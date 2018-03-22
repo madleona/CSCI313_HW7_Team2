@@ -26,10 +26,13 @@ export default class Game extends Phaser.State {
         this.bg = this.add.tileSprite(0, 0, 1024, 768, 'bg');
 
         this.bullets = this.add.group();
+        this.bullets2 = this.add.group();
+        this.bullets3 = this.add.group();
+        this.bullets4 = this.add.group();
         this.enemyBullets = this.add.group();
 
         //add player
-        this.player = new Player(this.game, 0, 0, this.bullets);
+        this.player = new Player(this.game, 0, 0, this.bullets, this.bullets2, this.bullets3, this.bullets4);
         this.game.add.existing(this.player);
 
         //add a few enemeis..
@@ -91,6 +94,9 @@ export default class Game extends Phaser.State {
         }
 
         this.physics.arcade.overlap(this.enemies, this.bullets, this.damageEnemy, null, this);
+        this.physics.arcade.overlap(this.enemies, this.bullets2, this.damageEnemy, null, this);
+        this.physics.arcade.overlap(this.enemies, this.bullets3, this.damageEnemy, null, this);
+        this.physics.arcade.overlap(this.enemies, this.bullets4, this.damageEnemy, null, this);
         this.physics.arcade.overlap(this.player, this.enemies, this.damagePlayer, null, this);
         this.physics.arcade.overlap(this.player, this.enemyBullets, this.damagePlayer, null, this);
         this.physics.arcade.overlap(this.player, this.powerups, this.obtainPowerup, null, this)

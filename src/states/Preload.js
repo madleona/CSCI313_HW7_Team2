@@ -28,6 +28,9 @@ export default class Preload {
         this.load.spritesheet('player', 'assets/images/gunbot.png', 214, 269); //width and height of sprite
         this.load.image('hexagon', 'assets/images/hexagon_particle.png');
         this.load.image('bullet', 'assets/images/bullet.png');
+        this.load.image('bullet2', 'assets/images/bullet2.png');
+        this.load.image('bullet3', 'assets/images/bullet3.png');
+        this.load.image('bullet4', 'assets/images/bullet4.png');
         this.load.image('enemyBullet', 'assets/images/enemyBullet.png');
         this.load.image('bg', 'assets/images/bg.jpg');
 

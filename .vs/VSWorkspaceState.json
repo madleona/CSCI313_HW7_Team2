@@ -4,9 +4,11 @@
     "\\assets",
     "\\assets\\images",
     "\\src",
+    "\\src\\models",
     "\\src\\prefabs",
-    "\\src\\states"
+    "\\src\\states",
+    "\\test"
   ],
-  "SelectedNode": "\\src\\states\\Game.js",
+  "SelectedNode": "\\src\\models\\GunModel.js",
   "PreviewInSolutionExplorer": false
 }
