@@ -61,9 +61,27 @@ describe("Gun Model", function () {
         assert.equal(model.canBeFired(), true);
     });
 
-    it('can not be fired again if it has been fired immediately before', function () {
+    it('fire can not be fired again if it has been fired immediately before', function () {
         let model = new GunModel();
         model.fire();
+        assert.equal(model.canBeFired(), false);
+    });
+
+    it('fire2 can not be fired again if it has been fired immediately before', function () {
+        let model = new GunModel();
+        model.fire2();
+        assert.equal(model.canBeFired(), false);
+    });
+
+    it('fire3 can not be fired again if it has been fired immediately before', function () {
+        let model = new GunModel();
+        model.fire3();
+        assert.equal(model.canBeFired(), false);
+    });
+
+    it('fire4 can not be fired again if it has been fired immediately before', function () {
+        let model = new GunModel();
+        model.fire4();
         assert.equal(model.canBeFired(), false);
     });
 
@@ -109,5 +127,11 @@ describe("Gun Model", function () {
 
         assert.equal(model.canBeFired(), true);
         clock.restore()
+    });
+
+    if ('bullet cannot be fired if max_bullet = 0', function () {
+        let model = new GunModel();
+        model.bullets = 0;
+        assert.equal(model.canBeFired(), false);
     });
 });
