@@ -129,10 +129,28 @@ describe("Gun Model", function () {
         clock.restore()
     });
 
-    if ('bullet cannot be fired if max_bullet = 0', function () {
+    it ('bullet cannot be fired if max_bullet = 0', function () {
         let model = new GunModel();
         model.bullets = 0;
         assert.equal(model.canBeFired(), false);
+    });
+
+    it ('bullet2 cannot be fired if max_bullet2 = 0', function () {
+        let model = new GunModel();
+        model.bullets2 = 0;
+        assert.equal(model.canBeFired2(), false);
+    });
+
+    it ('bullet3 cannot be fired if max_bullet3 = 0', function () {
+        let model = new GunModel();
+        model.bullets3 = 0;
+        assert.equal(model.canBeFired3(), false);
+    });
+
+    it ('bullet4 cannot be fired if max_bullet4 = 0', function () {
+        let model = new GunModel();
+        model.bullets4 = 0;
+        assert.equal(model.canBeFired4(), false);
     });
 
 
