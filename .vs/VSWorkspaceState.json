@@ -1,12 +1,14 @@
 {
   "ExpandedNodes": [
     "",
+    "\\assets",
+    "\\assets\\images",
     "\\src",
     "\\src\\models",
     "\\src\\prefabs",
     "\\src\\states",
     "\\test"
   ],
-  "SelectedNode": "\\test\\test_GunModel.js",
+  "SelectedNode": "\\src\\models\\PlayerModel.js",
   "PreviewInSolutionExplorer": false
 }

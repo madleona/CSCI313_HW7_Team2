@@ -4,9 +4,9 @@ export default class Powerups extends Phaser.Sprite {
         if (type === 'healthbox')
             super(game, x, y, 'healthbox', frame);
         else if (type === 'speed')
-            super(game, x, y, 'player', frame);
+            super(game, x, y, 'speed', frame);
         else
-            super(game, x, y, 'player', frame);
+            super(game, x, y, 'bullets', frame);
 
         //used to determine which type of powerup we're dealing with
         this.type = type;
