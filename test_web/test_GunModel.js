@@ -1,8 +1,6 @@
 import GunModel from "../src/models/GunModel.js";
 
 describe("Gun Model", function () {
-    let chai = require("chai");
-    let sinon = require("sinon");
     let assert = chai.assert;
 
     it("Can be created", function () {

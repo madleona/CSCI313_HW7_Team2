@@ -1,8 +1,6 @@
 import PlayerModel from "../src/models/PlayerModel.js";
 
 describe("Player Model", function () {
-    let chai = require("chai");
-    let sinon = require("sinon");
     let assert = chai.assert;
     let expect = chai.expect;
 
